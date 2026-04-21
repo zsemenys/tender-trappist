@@ -1,0 +1,91 @@
+<header class="sticky top-0 z-50 bg-white shadow">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <a href="/" class="text-xl font-bold text-slate-800">SOLARMONITORING</a>
+
+      <nav class="hidden md:flex gap-8 text-sm font-medium h-full items-center">
+        <a href="/" class="hover:text-blue-600 transition-colors">Úvod</a>
+        
+        <div class="relative group h-full flex items-center">
+          <button class="flex items-center gap-1 hover:text-blue-600 transition-colors py-5">
+            PRODUKTY A SLUŽBY
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="absolute left-0 top-full hidden group-hover:block w-64 bg-white border border-slate-100 shadow-xl rounded-b-xl">
+             <div class="flex flex-col py-2">
+                <a href="/baterie" class="px-5 py-2 hover:bg-blue-50 uppercase text-[11px]">Bateriová úložiště</a>
+                <a href="/monitoring" class="px-5 py-2 hover:bg-blue-50 uppercase text-[11px]">Monitoring</a>
+                <a href="/dispecink" class="px-5 py-2 hover:bg-blue-50 uppercase text-[11px]">Dispečink</a>
+                <a href="/servis-basic" class="px-5 py-2 hover:bg-blue-50 uppercase text-[11px]">Servis Basic</a>
+                <a href="/servis-full" class="px-5 py-2 hover:bg-blue-50 uppercase text-[11px]">Servis Full</a>
+             </div>
+          </div>
+        </div>
+
+        <a href="/kontakt" class="hover:text-blue-600 transition-colors">Kontakt</a>
+      </nav>
+
+      <button id="menu-btn" class="md:hidden p-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden fixed inset-0 bg-white z-[100] overflow-y-auto p-6">
+    <div class="flex justify-between items-center mb-8">
+      <span class="font-bold">MENU</span>
+      <button id="close-menu" class="text-3xl">&times;</button>
+    </div>
+    
+    <nav class="flex flex-col gap-4 text-lg">
+      <a href="/" class="border-b pb-2">Úvod</a>
+      
+      <div class="flex flex-col">
+        <button id="mobile-products-btn" class="flex justify-between items-center w-full py-2 border-b text-left font-bold uppercase text-blue-600">
+          Produkty a služby
+          <span>+</span>
+        </button>
+        <div id="mobile-products-list" class="hidden flex flex-col pl-4 bg-slate-50">
+          <a href="/baterie" class="py-3 border-b text-sm">Bateriová úložiště</a>
+          <a href="/monitoring" class="py-3 border-b text-sm">Monitoring</a>
+          <a href="/dispecink" class="py-3 border-b text-sm">Dispečink</a>
+          <a href="/servis-basic" class="py-3 border-b text-sm">Servis Basic</a>
+          <a href="/servis-full" class="py-3 text-sm">Servis Full</a>
+        </div>
+      </div>
+      
+      <a href="/kontakt" class="border-b pb-2">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Ovládání hlavního mobilního menu
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const close = document.getElementById('close-menu');
+
+  btn?.addEventListener('click', () => {
+    menu?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Zamezí skrolování pozadí
+  });
+
+  close?.addEventListener('click', () => {
+    menu?.classList.add('hidden');
+    document.body.style.overflow = '';
+  });
+
+  // Ovládání rozklikávání produktů v mobilu (Akordeon)
+  const productsBtn = document.getElementById('mobile-products-btn');
+  const productsList = document.getElementById('mobile-products-list');
+
+  productsBtn?.addEventListener('click', () => {
+    productsList?.classList.toggle('hidden');
+    const span = productsBtn.querySelector('span');
+    if (span) span.innerText = productsList?.classList.contains('hidden') ? '+' : '−';
+  });
+</script>

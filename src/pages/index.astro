@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Karta from '../components/Karta.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+
+<Layout title="Solarmon - Monitoring">
+	<main class="container mx-auto mt-20 px-4">
+		<p class="mt-6 text-xl text-slate-600">
+			Vítejte v novém rozhraní postaveném na Astru.
+		</p>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+
+    <Karta nazev="Monitoring FVE" popis="Sledujte svůj výkon odkudkoliv na světě." />
+    <Karta nazev="Bateriové úložiště" popis="Ukládejte energii na noc a buďte nezávislí." />
+</div>
+<div class="max-w-240 mx-auto px-4 font-sans text-gray-800">
+
+    <div class="w-full py-6">
+        <h1 class="text-3xl font-bold text-[#2b88b2] mb-6">Bateriová úložiště</h1>
+    </div>
+
+    <div class="mb-8">
+        <p class="text-lg font-bold text-[#2b88b2] leading-relaxed mb-4">
+            Našim zákazníkům přinášíme unikátní řešení pro instalaci a inteligentní řízení bateriových úložišť. Kombinujeme vlastní software s moderním hardwarem a díky přímé spolupráci s výrobcem bateriových systémů se podílíme i na jejich vývoji. To nám umožňuje přizpůsobit celé řešení české legislativě, klimatickým podmínkám i specifikům místních energetických sítí. Veškeré naše instalace jsou tak certifikované dle českých i evropských norem a schváleny pro provoz distribučními společnostmi.
+        </p>
+        <p class="text-base text-justify leading-relaxed">
+            Klientům tak můžeme nabídnout kompletní servis, od celkového návrhu bateriového úložiště, přes zpracování projektu, komunikaci s úřady, distributorem elektrické energie, až po bezproblémové uvedení do provozu a následný monitoring a správu zařízení i případný záruční a pozáruční servis. Ten je dostupný nonstop jak po území České republiky, tak i ve státech Evropské unie. Díky skladu náhradních dílů nedaleko Vídně máme rychlý přístup k potřebným komponentům a nejsme tak vázáni na dodací lhůty třetích stran.
+        </p>
+    </div>
+
+    <hr class="my-8 border-gray-200" />
+
+    <h2 class="text-2xl font-semibold text-[#2b88b2] mb-8 text-center">
+        Vlastní bateriová úložiště nabízíme ve dvou základních provedeních:
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <div class="p-4 hover:bg-blue-50 transition-colors duration-300 rounded-lg border border-transparent hover:border-blue-100">
+            <h3 class="text-xl font-bold text-[#2b88b2] mb-4">Kontejnerové jednotky</h3>
+            <p class="text-justify mb-4">
+                Pro menší instalace, dynamicky se měnící podmínky nebo provozy s nedostatkem prostoru nabízíme kontejnerové jednotky s kapalným chlazením. Tyto jednotky umožňují maximální snížení vstupních nákladů díky jednoduché dopravě i instalaci v místě. 
+            </p>
+            <ul class="space-y-2">
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2">▶</span>
+                    <span>Nabízejí též velkou modularitu, pokud by v budoucnu bylo třeba rozšíření úložné kapacity baterií.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2">▶</span>
+                    <span>Jsou ideální k integraci s obnovitelnými zdroji energie, kdy poskytují možnost vyrovnávání výkonových špiček a pružnou reakci na požadavky rozvodné sítě.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2">▶</span>
+                    <span>Pro venkovní instalace splňují stupeň ochrany IP55 a IP67.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2">▶</span>
+                    <span>Obsahují LiFeP04 články se zvýšenou tepelnou stabilitou.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2">▶</span>
+                    <span>Záruka na tento systém je 10 let nebo 6000 cyklů.</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="p-4 hover:bg-blue-50 transition-colors duration-300 rounded-lg border border-transparent hover:border-blue-100">
+            <h3 class="text-xl font-bold text-[#2b88b2] mb-4">Stacionární modulární úložiště</h3>
+            <p class="text-justify mb-4">
+                Druhou možností jsou stacionární modulární úložiště. Jejich předností je jednoduchá konfigurovatelnost bateriového systému a možnost postupného navyšování jeho kapacity. 
+            </p>
+            <ul class="space-y-2">
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2">▶</span>
+                    <span>Poskytují jak robustní zálohu pro případ výpadků elektrické sítě, tak efektivní podporu solárních či větrných elektráren při vyrovnávání nenadálých požadavků distributorů.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2">▶</span>
+                    <span>Umožňují též akumulaci energie v době jejích nízkých cen a její pozdější využití v době špiček.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2">▶</span>
+                    <span>Stejně jako kontejnerové jednotky obsahují LiFeP04 články se zvýšenou tepelnou stabilitou.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2">▶</span>
+                    <span>Pro venkovní instalace splňují tato úložiště stupeň ochrany IP55 a IP67.</span>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2">▶</span>
+                    <span>Záruka na tento systém je 10 let nebo 6000 cyklů.</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+	</main>
+</Layout>
