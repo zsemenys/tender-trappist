@@ -1,34 +1,101 @@
 ---
+// Importujeme komponenty
 import '../styles/global.css';
-import '../components/Header.astro';
-import '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
----
-<!doctype html>
-<html lang="cs">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<Header/>
-		<main>
-		<slot />
-		</main>
-		<Footer/>
-	</body>
-</html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const { 
+  title, 
+  description, 
+  image = '/og-image.jpg', 
+  canonicalURL = Astro.url.href 
+} = Astro.props;
+
+// Automatický rok pro patičku
+const currentYear = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="cs" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="shortcut icon" href="https://www.solarmon.eu/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="https://www.solarmon.eu/images/apple-touch-icon.png" />
+
+    <title>{title} | SOLARMONITORING</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <meta name="google-site-verification" content="aK8GTzQdlcrz_z5XXeaw3nlTlLqawW3F4gRPKHcLG1U" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  
+  <body class="min-h-screen bg-white text-slate-900 antialiased selection:bg-green-100 selection:text-green-900">
+    
+    <Header />
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <footer class="bg-slate-900 text-white pt-16 pb-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div class="col-span-1 md:col-span-2">
+            <img src="https://www.solarmon.eu/images/layout/img_logo.png" alt="Logo" class="h-10 mb-6 brightness-0 invert" />
+            <p class="text-slate-400 max-w-sm">
+              Přední česká firma v oboru monitorování a diagnostiky FVE od roku 2009.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold mb-4">Služby</h4>
+            <ul class="space-y-2 text-slate-400">
+              <li><a href="/produkty-a-sluzby/monitoring" class="hover:text-green-400">Monitoring FVE</a></li>
+              <li><a href="/produkty-a-sluzby/servis-full" class="hover:text-green-400">Servis a revize</a></li>
+              <li><a href="/produkty-a-sluzby/bateriova-uloziste" class="hover:text-green-400">Bateriová úložiště</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold mb-4">Kontakt</h4>
+            <address class="not-italic text-slate-400 space-y-2">
+              <p>sales@solarmon.eu</p>
+              <p>Praha, Česká republika</p>
+            </address>
+          </div>
+        </div>
+        
+        <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+          <p>© {currentYear} solarmonitoring s.r.o.</p>
+          <div class="flex gap-6">
+            <a href="/ochrana-soukromi" class="hover:text-white">Ochrana soukromí</a>
+            <a href="/cookies" class="hover:text-white">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
