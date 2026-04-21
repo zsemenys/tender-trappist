@@ -1,147 +1,133 @@
 ---
 // Header.astro
+
 const navLinks = [
   { name: 'Úvod', href: '/' },
   { 
     name: 'Produkty a služby', 
-    href: '/produkty-a-sluzby',
+    href: '#', 
     submenu: [
       { name: 'Bateriová úložiště', href: '/produkty-a-sluzby/bateriova-uloziste' },
-      { name: 'Monitoring', href: '/produkty-a-sluzby/monitoring' },
+      { name: 'Monitoring FVE', href: '/produkty-a-sluzby/monitoring' },
       { name: 'Dispečink', href: '/produkty-a-sluzby/dispecink' },
-      { name: 'Servis BASIC', href: '/produkty-a-sluzby/servis-basic' },
-      { name: 'Servis FULL', href: '/produkty-a-sluzby/servis-full' },
+      { name: 'Servis a revize', href: '/produkty-a-sluzby/servis' },
       { name: 'Opravy měničů', href: '/produkty-a-sluzby/opravy-menicu' },
-      { name: 'Opravy panelů', href: '/produkty-a-sluzby/opravy-panelu' },
     ]
   },
   { name: 'Katalog', href: '/eshop' },
   { name: 'O společnosti', href: '/o-spolecnosti' },
   { name: 'Kontakty', href: '/kontakty' },
+  { name: 'Něco', href: '/neco' },
 ];
 ---
 
-<header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-slate-100">
-  <div class="bg-slate-900 text-white py-2 hidden md:block">
-    <div class="container mx-auto px-4 flex justify-between items-center text-xs font-medium">
-      <div class="flex gap-6">
-        <a href="mailto:sales@solarmon.eu" class="hover:text-green-400 transition-colors">sales@solarmon.eu</a>
-        <span class="text-slate-500">Monitoring, Dispečink a Servis FVE</span>
-      </div>
-      <div class="flex gap-4 items-center">
-        <a href="#" class="text-green-400 uppercase">CS</a>
-        <span class="text-slate-700">|</span>
-        <a href="#" class="hover:text-green-400 uppercase transition-colors">EN</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="container mx-auto px-4 py-4">
-    <nav class="flex items-center justify-between">
-      <a href="/" class="relative z-50 group">
-        <img 
-          src="https://www.solarmon.eu/images/layout/img_logo.png" 
-          alt="SOLARMONITORING" 
-          class="h-10 md:h-12 w-auto transition-transform group-hover:scale-105"
-        />
+<header class="sticky top-0 z-50 w-full bg-white border-b border-slate-100 shadow-sm">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between h-20">
+      
+      <a href="/" class="shrink-0">
+        <img src="https://www.solarmon.eu/images/layout/img_logo.png" alt="SOLARMONITORING" class="h-10 w-auto"/>
       </a>
 
-      <ul class="hidden lg:flex items-center gap-8">
+      <nav class="hidden lg:flex items-center gap-6">
         {navLinks.map((link) => (
-          <li class="relative group">
-            <a 
-              href={link.href} 
-              class="text-sm font-bold text-slate-700 hover:text-green-600 transition-colors py-2 flex items-center gap-1"
-            >
+          <div class="relative group">
+            <a href={link.href} class="flex items-center gap-1 text-sm font-bold text-slate-700 hover:text-green-600 py-8 transition-colors">
               {link.name}
-              {link.submenu && (
-                <svg class="w-4 h-4 opacity-50 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              )}
+              {link.submenu && <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>}
             </a>
             
             {link.submenu && (
-              <ul class="absolute left-0 top-full pt-4 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <div class="bg-white shadow-xl border border-slate-100 rounded-xl overflow-hidden p-2">
+              <div class="absolute left-0 top-[calc(100%-10px)] hidden group-hover:block w-56 pt-2">
+                <div class="bg-white border border-slate-100 shadow-xl rounded-xl overflow-hidden p-2">
                   {link.submenu.map((sub) => (
-                    <li>
-                      <a href={sub.href} class="block px-4 py-2.5 text-sm text-slate-600 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors">
-                        {sub.name}
-                      </a>
-                    </li>
+                    <a href={sub.href} class="block px-4 py-2 text-sm text-slate-600 hover:bg-green-50 hover:text-green-700 rounded-lg transition-colors">
+                      {sub.name}
+                    </a>
                   ))}
                 </div>
-              </ul>
+              </div>
             )}
-          </li>
+          </div>
         ))}
-      </ul>
+      </nav>
 
-      <div class="hidden lg:flex items-center gap-4">
-        <a href="/kontakty" class="px-5 py-2.5 bg-green-600 text-white text-sm font-bold rounded-full hover:bg-green-500 transition-all shadow-md hover:shadow-lg">
-          Napsat zprávu
-        </a>
-      </div>
-
-      <button 
-        id="menu-toggle"
-        class="lg:hidden relative z-50 p-2 text-slate-900 focus:outline-none"
-        aria-label="Menu"
-      >
-        <div id="hamburger" class="w-6 h-5 relative flex flex-col justify-between">
-          <span class="w-full h-0.5 bg-current transition-all duration-300"></span>
-          <span class="w-full h-0.5 bg-current transition-all duration-300"></span>
-          <span class="w-full h-0.5 bg-current transition-all duration-300"></span>
-        </div>
+      <button id="menu-toggle" class="lg:hidden p-2 text-slate-600" aria-label="Menu">
+        <svg id="icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        <svg id="icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
       </button>
-    </nav>
+    </div>
   </div>
 
-  <div 
-    id="mobile-menu" 
-    class="fixed inset-0 bg-white z-40 translate-x-full transition-transform duration-300 lg:hidden flex flex-col pt-24 px-6"
-  >
-    <ul class="flex flex-col gap-6 text-xl font-bold text-slate-900">
-      {navLinks.map((link) => (
-        <li>
-          <a href={link.href} class="hover:text-green-600 transition-colors">{link.name}</a>
-          {link.submenu && (
-            <ul class="pl-4 mt-2 flex flex-col gap-3">
-              {link.submenu.slice(0, 3).map((sub) => (
-                <li>
-                  <a href={sub.href} class="text-base font-medium text-slate-500">{sub.name}</a>
-                </li>
+ <div 
+  id="mobile-menu" 
+  class="hidden lg:hidden border-t border-slate-100 bg-white w-full max-h-[calc(100vh-80px)] overflow-y-auto"
+>
+  <nav class="flex flex-col">
+    {navLinks.map((link) => (
+      <div class="border-b border-slate-50 last:border-0">
+        {link.submenu ? (
+          <div class="flex flex-col">
+            <button class="submenu-trigger flex items-center justify-between w-full px-6 py-5 text-base font-bold text-slate-800 hover:bg-slate-50 transition-colors">
+              {link.name}
+              <svg class="w-5 h-5 text-slate-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M19 9l-7 7-7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            
+            <div class="hidden flex-col bg-slate-50 px-6 py-2">
+              {link.submenu.map((sub) => (
+                <a 
+                  href={sub.href} 
+                  class="block py-3 text-sm font-semibold text-slate-600 hover:text-green-600 transition-colors border-l-2 border-transparent hover:border-green-500 pl-4"
+                >
+                  {sub.name}
+                </a>
               ))}
-            </ul>
-          )}
-        </li>
-      ))}
-    </ul>
-    <div class="mt-auto mb-12 flex flex-col gap-4">
-      <a href="/kontakty" class="w-full py-4 bg-slate-900 text-white text-center rounded-xl font-bold">Napsat zprávu</a>
-    </div>
+            </div>
+          </div>
+        ) : (
+          <a 
+            href={link.href} 
+            class="block px-6 py-5 text-base font-bold text-slate-800 hover:bg-slate-50 transition-colors"
+          >
+            {link.name}
+          </a>
+        )}
+      </div>
+    ))}
+   
+      <a href="/kontakty" class="mt-6 block w-full py-4 bg-green-600 text-white text-center font-bold rounded-xl shadow-md">
+        Poptat servis
+      </a>
+    </nav>
   </div>
 </header>
 
 <script>
+  // Hlavní toggle pro mobilní menu
   const btn = document.getElementById('menu-toggle');
   const menu = document.getElementById('mobile-menu');
-  const hamburger = document.getElementById('hamburger');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
 
   btn?.addEventListener('click', () => {
-    menu?.classList.toggle('translate-x-full');
-    // Animace hamburgeru na X
-    const spans = hamburger?.querySelectorAll('span');
-    spans?.[0].classList.toggle('rotate-45');
-    spans?.[0].classList.toggle('translate-y-2');
-    spans?.[1].classList.toggle('opacity-0');
-    spans?.[2].classList.toggle('-rotate-45');
-    spans?.[2].classList.toggle('-translate-y-2.5');
+    const isHidden = menu?.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden', !isHidden);
+    iconClose?.classList.toggle('hidden', isHidden);
+    document.body.style.overflow = isHidden ? '' : 'hidden';
+  });
+
+  // Logika pro rozbalování submenu v mobilu
+  const submenuTriggers = document.querySelectorAll('.submenu-trigger');
+  
+  submenuTriggers.forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const submenu = trigger.nextElementSibling;
+      const icon = trigger.querySelector('svg');
+      
+      const isHidden = submenu?.classList.toggle('hidden');
+      icon?.classList.toggle('rotate-180', !isHidden);
+    });
   });
 </script>
-
-<style>
-  /* Zajišťuje, že se menu nezobrazuje při načítání */
-  #mobile-menu:not(.translate-x-full) {
-    display: flex;
-  }
-</style>
